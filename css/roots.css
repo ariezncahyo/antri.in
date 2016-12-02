@@ -649,6 +649,11 @@ img.bg {
   font-size: 15px;
   line-height: 1.15;
 }
+.app-page .app-page-content .antrianbig{
+  font-size: 60px;
+  text-align: center;
+  padding-top: 50px;
+}
 .app-page .app-page-content img {
   max-width: 100%;
 }
@@ -952,6 +957,26 @@ img.bg {
 .app-page .list--categories .desc {
   line-height: 1.2;
   font-size: 13px;
+}
+.app-page .list--categories .antrian{
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.app-page .list--categories .activity{
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.app-page .list--categories .time{
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 13px;
+  opacity: 0.4;
+  margin-bottom: 6px;
+  font-style: italic;
 }
 .app-page map {
   height: 280px;
