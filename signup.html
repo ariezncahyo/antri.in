@@ -10,11 +10,11 @@
 
   <div class="signup-page">
     <div class="signup-logo">
-      <h2 class="home-title">Pomodoro</h2>
-      <p class="subtitle">Steakhouse &amp; Seafood</p>
+      <h2 class="home-title">antri.in</h2>
+      <p class="subtitle">opo iki tagline e?</p>
     </div>
 
-    <div class="signup-form">
+    <div class="signup-form" ng-controller="signupController">
       <div class="signup-wrapper">
         <ons-row>
           <ons-col>
@@ -28,13 +28,13 @@
 
         <ons-row>
           <ons-col>
-            <input type="text" class="text-input--underbar width-full" placeholder="Email" value="">
+            <input type="text" class="text-input--underbar width-full" placeholder="Email" value="" ng-model="email">
           </ons-col>
         </ons-row>
 
         <ons-row>
           <ons-col>
-            <input type="password" class="text-input--underbar width-full" placeholder="Password" value="">
+            <input type="password" class="text-input--underbar width-full" placeholder="Password" value="" ng-model="password">
           </ons-col>
         </ons-row>
 
@@ -44,13 +44,13 @@
 
         <ons-row>
           <ons-col>
-            <ons-button modifier="large">Sign up</ons-button>
+            <ons-button modifier="large" ng-click="signup(email,password)">Sign up</ons-button>
           </ons-col>
         </ons-row>
       </div>
     </div>
 
-    <div class="blur">
+    <div class="noblur">
       <img src="images/bg1.png" class="bg">
     </div>
   </div>

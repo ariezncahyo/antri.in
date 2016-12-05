@@ -10,7 +10,17 @@
 (function(){
   'use strict';
  
-  var app = angular.module('app', ['onsen', 'angular-images-loaded', 'ngMap', 'angular-carousel']);
+  var app = angular.module('app', ['onsen', 'angular-images-loaded', 'ngMap', 'angular-carousel','firebase']);
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAW2hD8hZVhrXFLusKOlRwGN977xcuDkUc",
+    authDomain: "antriin-22b07.firebaseapp.com",
+    databaseURL: "https://antriin-22b07.firebaseio.com",
+    storageBucket: "antriin-22b07.appspot.com",
+    messagingSenderId: "424719960904"
+  };
+  firebase.initializeApp(config);
 
   // Filter to convert HTML content to string by removing all HTML tags
   app.filter('htmlToPlaintext', function() {
@@ -339,6 +349,83 @@
     }
 
   });
+
+  app.controller('loginController', function($scope, $compile, $filter, $firebaseAuth){
+
+    $scope.bookdate = 'Pick Reservation Date';
+    $scope.booktime = 'Pick Reservation Time';
+
+    $scope.login = function(email,password)
+    {
+      console.log("logging in");
+
+      var auth = $firebaseAuth();
+
+      auth.$signInWithEmailAndPassword(email, password)
+      .then(function(firebaseUser) 
+      {
+        console.log("Signed in as:", firebaseUser.uid);
+      }).catch(function(error) 
+      {
+        console.error("Authentication failed:", error);
+      });
+    }
+
+    $scope.chooseTime = function(){
+      
+      var options = {
+        date: new Date(),
+        mode: 'time'
+      };
+
+      datePicker.show(options, function(time){
+          $scope.$apply(function(){
+            $scope.booktime = $filter('date')(time, 'hh:mm a');
+          });
+      });
+
+    }
+
+  });
+
+  app.controller('signupController', function($scope, $compile, $filter, $firebaseAuth){
+
+    $scope.bookdate = 'Pick Reservation Date';
+    $scope.booktime = 'Pick Reservation Time';
+
+    $scope.signup = function(email,password)
+    {
+      var auth = $firebaseAuth();
+
+      console.log("signing up");
+
+      auth.$createUserWithEmailAndPassword(email, password)
+      .then(function(firebaseUser) 
+      {
+        console.log("User " + firebaseUser.uid + " created successfully!");
+      }).catch(function(error) 
+      {
+        console.error("Error: ", error);
+      });
+    }
+
+    $scope.chooseTime = function(){
+      
+      var options = {
+        date: new Date(),
+        mode: 'time'
+      };
+
+      datePicker.show(options, function(time){
+          $scope.$apply(function(){
+            $scope.booktime = $filter('date')(time, 'hh:mm a');
+          });
+      });
+
+    }
+
+  });
+
 
   // Plugins Controller
 

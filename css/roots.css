@@ -524,6 +524,17 @@ img.bg {
   filter: url(#blur);
   overflow: hidden;
 }
+
+.noblur 
+{
+  height: 100%;
+  width: 100%!important;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+
 .blur img {
   width: 110%;
   height: 110%;
@@ -532,6 +543,17 @@ img.bg {
   left: -10px;
   right: -10px;
 }
+
+.noblur img
+{
+  width: 110%;
+  height: 110%;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+}
+
 .blur:after {
   content: '';
   height: 100%;
@@ -539,6 +561,15 @@ img.bg {
   background: rgba(0, 0, 0, 0.15);
   position: absolute;
 }
+
+.noblur:after
+{
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;  
+}
+
 .bgbox {
   height: 100%;
   width: 100%!important;
@@ -1075,6 +1106,12 @@ img.bg {
   position: absolute;
   left: 5px;
 }
+
+.app-profile .noblur img {
+  position: absolute;
+  left: 0px;
+}
+
 .app-profile .blur:after {
   content: '';
   height: 100%;
@@ -1082,6 +1119,14 @@ img.bg {
   background: rgba(0, 0, 0, 0.35);
   position: absolute;
 }
+
+.app-profile .noblur:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
 .app-profile .profile-image {
   height: 100px;
   width: 100px;
