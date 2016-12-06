@@ -307,6 +307,10 @@
 
   });
 
+  app.controller('insertController'), function($scope,$compile,$filter,$firebaseArray,$firebaseAuth){
+    
+  }
+
   app.controller('bookingController', function($scope, $compile, $filter,$firebaseArray,$firebaseAuth){
 
     $scope.bookdate = 'Pick Reservation Date';
@@ -451,8 +455,6 @@
     }
 
   });
-
-
   // Plugins Controller
 
   app.controller('pluginsController', function($scope, $compile){

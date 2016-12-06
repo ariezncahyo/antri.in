@@ -6,14 +6,10 @@
       <div class="profile-name">Dave Graham</div>
       <div class="profile-id">@davegraham</div>
       <div class="profile-desc">Freelance designer, software engineer and cyclist</div>
-      <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <filter id="blur">
-          <feGaussianBlur stdDeviation="10" />
-        </filter>
-      </svg> -->
-      <div class="black-overlay"><div class="blur">
-        <img src="images/bg1.png" class="bg">
-      </div></div>
+      <div class="black-overlay"></div>
+<div class="blur2">
+        <img src="images/bg1.png" class="bg2">
+      </div>
       
   </div>
 </div>
@@ -25,7 +21,7 @@
     <ons-icon icon="fa-bookmark" fixed-width="true"></ons-icon>
     Page
   </ons-list-item>
-  <ons-list-item class="menu-item" ng-click="menu.setMainPage('food-menu.html', {closeMenu: true})">
+  <ons-list-item class="menu-item" ng-click="menu.setMainPage('dishes.html', {closeMenu: true})">
     <ons-icon icon="fa-th-large" fixed-width="true"></ons-icon>
     Menu
   </ons-list-item>
@@ -41,6 +37,7 @@
     <ons-icon icon="fa-calendar-o" fixed-width="true"></ons-icon>
     Booking
   </ons-list-item>
+  <ons-list-item class="menu-item" ng-click="menu.setMainPage('insert.html'),"
   <ons-list-item class="menu-item" ng-click="menu.setMainPage('slideshow.html', {closeMenu: true})">
     <ons-icon icon="ion-image" fixed-width="true"></ons-icon>
     Slideshow
