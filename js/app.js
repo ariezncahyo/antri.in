@@ -307,12 +307,38 @@
 
   });
 
-  app.controller('bookingController', function($scope, $compile, $filter){
+  app.controller('bookingController', function($scope, $compile, $filter,$firebaseArray,$firebaseAuth){
 
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';
 
-    $scope.chooseDate = function(){
+    $scope.upload = function(fullname)
+    {
+      console.log("coba upload");
+      var fb = $firebaseAuth();
+      var auth=fb.$getAuth();
+      if(auth)
+      {
+        console.log("udah login");
+        var ref=firebase.database().ref();
+        var syncArray=$firebaseArray(ref);
+        syncArray.$add({fullname: 'fullname'}).then(function(syncArray)
+        {
+          console.log("data telah ditambahkan");
+        }
+        ).catch(error)
+        {
+          console.log(error);
+        }}
+      else
+      {
+        console.log("belum login");
+      }
+    }
+    
+
+    $scope.chooseDate = function()
+    {
       
       var options = {
         date: new Date(),
