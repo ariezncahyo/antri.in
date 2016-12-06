@@ -316,7 +316,7 @@
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';
 
-    $scope.upload = function(fullname)
+    $scope.upload = function(fullname,email)
     {
       console.log("coba upload");
       var fb = $firebaseAuth();
@@ -326,14 +326,15 @@
         console.log("udah login");
         var ref=firebase.database().ref();
         var syncArray=$firebaseArray(ref);
-        syncArray.$add({fullname: 'fullname'}).then(function(syncArray)
+        syncArray.$add({fullname: fullname, email:email}).then(function(syncArray)
         {
           console.log("data telah ditambahkan");
         }
-        ).catch(error)
+        ).catch(function(error) 
         {
-          console.log(error);
-        }}
+          console.error("Error: ", error);
+        });
+      }
       else
       {
         console.log("belum login");

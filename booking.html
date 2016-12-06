@@ -53,7 +53,7 @@
           <input type="text" class="text-input text-input--transparent" placeholder="Full Name" ng-model="fullname">
         </ons-list-item>
         <ons-list-item>
-          <input type="email" class="text-input text-input--transparent" placeholder="Email" ng-model="email">
+          <input type="text" class="text-input text-input--transparent" placeholder="Email" ng-model="email">
         </ons-list-item>
         <ons-list-item>
           <input type="tel" class="text-input text-input--transparent" placeholder="Phone" ng-model="phone">
@@ -77,7 +77,7 @@
       </ons-list>
 
       <div class="request-button">
-        <ons-button modifier="large" style="margin: 0 auto;" ng-click="upload(fullname)">
+        <ons-button modifier="large" style="margin: 0 auto;" ng-click="upload(fullname,email)">
           Request Booking
         </ons-button>
       </div>
