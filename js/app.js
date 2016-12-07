@@ -398,7 +398,7 @@
         console.log("Signed in as:", firebaseUser.uid);
       }).catch(function(error) 
       {
-        console.error("Authentication failed:", error);
+        console.error(error);
       });
     }
 
