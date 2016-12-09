@@ -1,5 +1,6 @@
    
 <ons-page>
+<ng-include src="template.html"></ng-include>
 <!--     <ons-modal var="myModal">
       <ons-button onclick="myModal.hide()">Hide</ons-button>
     </ons-modal> -->
@@ -22,7 +23,7 @@
         <input type="email" class="text-input--underbar" placeholder="Email" value="" ng-model="email">
         <input type="password" class="text-input--underbar" placeholder="Password" value="" ng-model="password">
         <br><br>
-        <ons-button id="showmodal" modifier="large" class="login-button" ng-click="login(email,password,template.html)">Log In</ons-button>
+        <ons-button id="showmodal" modifier="large" class="login-button" ng-click="login(email,password,naviDialog,naviDialog2)">Log In</ons-button>
         <br><br>
         <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
       </div>
@@ -40,19 +41,22 @@
 </ons-page>
 
 
-<script type="text/ons-template" id="template.html">
-    <ons-dialog style="height: 160px;" var="naviDialog" cancelable>
+    <ons-dialog style="height: 160px;" var="naviDialog" cancelable >
       <ons-navigator var="myNav">
-        <ons-toolbar inline>
-          <div class="center">
-            Navigator
-          </div>
-        </ons-toolbar>
         <div style="text-align: center">
+          <p>
+            Welcome
+          </p>
+        </div>
+      </ons-navigator>
+    </ons-dialog>
+
+    <ons-dialog style="height: 160px;" var="naviDialog2" cancelable >
+      <ons-navigator var="myNav">
+        <div class="alert-dialog-title" style="text-align: center">
           <p>
             Username or password Incorrect
           </p>
         </div>
       </ons-navigator>
     </ons-dialog>
-</script>

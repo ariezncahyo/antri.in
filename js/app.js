@@ -411,27 +411,21 @@
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';
 
-    $scope.login = function(email,password,navigator)
+    $scope.login = function(email,password,navigator,navigator2)
     {
       console.log("logging in");
-
       var auth = $firebaseAuth();
 
       auth.$signInWithEmailAndPassword(email, password)
       .then(function(firebaseUser) 
       {
         console.log("Signed in as:", firebaseUser.uid);
-        if (!$scope.dialogs[navigator]) {
-          ons.createDialog(navigator).then(function(dialog) {
-          $scope.dialogs[navigator] = dialog;
-          dialog.show();
-          });
-        }else {
-          $scope.dialogs[navigator].show();
-        }
+        navigator.show();
+
       }).catch(function(error) 
       {
         console.error(error);
+        navigator2.show();
       });
     }
 
@@ -457,7 +451,7 @@
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';
 
-    $scope.signup = function(email,password)
+    $scope.signup = function(email,password,navigator3,navigator4)
     {
       var auth = $firebaseAuth();
 
@@ -467,9 +461,11 @@
       .then(function(firebaseUser) 
       {
         console.log("User " + firebaseUser.uid + " created successfully!");
+        navigator3.show();
       }).catch(function(error) 
       {
         console.error("Error: ", error);
+        navigator4.show();
       });
     }
 

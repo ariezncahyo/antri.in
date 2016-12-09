@@ -11,7 +11,7 @@
   <div class="signup-page">
     <div class="signup-logo">
       <h2 class="home-title">antri.in</h2>
-      <p class="subtitle">opo iki tagline e?</p>
+      <p class="subtitle">time is money</p>
     </div>
 
     <div class="signup-form" ng-controller="signupController">
@@ -44,7 +44,7 @@
 
         <ons-row>
           <ons-col>
-            <ons-button modifier="large" ng-click="signup(email,password)">Sign up</ons-button>
+            <ons-button modifier="large" ng-click="signup(email,password,naviDialog3,naviDialog4)">Sign up</ons-button>
           </ons-col>
         </ons-row>
       </div>
@@ -62,3 +62,23 @@
   </svg> 
 
 </ons-page>
+
+    <ons-dialog style="height: 160px;" var="naviDialog3" cancelable >
+      <ons-navigator var="myNav">
+        <div style="text-align: center">
+          <p>
+            Created
+          </p>
+        </div>
+      </ons-navigator>
+    </ons-dialog>
+
+    <ons-dialog style="height: 160px;" var="naviDialog4" cancelable >
+      <ons-navigator var="myNav">
+        <div class="alert-dialog-title" style="text-align: center">
+          <p>
+            Something Wrong
+          </p>
+        </div>
+      </ons-navigator>
+    </ons-dialog>
