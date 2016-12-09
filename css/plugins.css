@@ -26,6 +26,7 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: 0.25em;
+  z-index: 2;
 }
 a.label:hover,
 a.label:focus {

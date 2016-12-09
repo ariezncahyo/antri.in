@@ -1,4 +1,8 @@
+   
 <ons-page>
+<!--     <ons-modal var="myModal">
+      <ons-button onclick="myModal.hide()">Hide</ons-button>
+    </ons-modal> -->
   <ons-toolbar modifier="transparent">    
     <div class="left">
       <ons-toolbar-button ng-click="menu.toggle()"><ons-icon icon="ion-navicon-round" style="color: white; font-size: 28px;" fixed-width="false"></ons-icon></ons-toolbar-button>
@@ -18,7 +22,7 @@
         <input type="email" class="text-input--underbar" placeholder="Email" value="" ng-model="email">
         <input type="password" class="text-input--underbar" placeholder="Password" value="" ng-model="password">
         <br><br>
-        <ons-button modifier="large" class="login-button" ng-click="login(email,password)">Log In</ons-button>
+        <ons-button id="showmodal" modifier="large" class="login-button" ng-click="login(email,password,template.html)">Log In</ons-button>
         <br><br>
         <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
       </div>
@@ -33,6 +37,22 @@
      <feGaussianBlur stdDeviation="10" />
      </filter>
   </svg> 
-
-
 </ons-page>
+
+
+<script type="text/ons-template" id="template.html">
+    <ons-dialog style="height: 160px;" var="naviDialog" cancelable>
+      <ons-navigator var="myNav">
+        <ons-toolbar inline>
+          <div class="center">
+            Navigator
+          </div>
+        </ons-toolbar>
+        <div style="text-align: center">
+          <p>
+            Username or password Incorrect
+          </p>
+        </div>
+      </ons-navigator>
+    </ons-dialog>
+</script>

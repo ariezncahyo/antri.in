@@ -40,6 +40,7 @@ ons-toolbar-button.white .toolbar-button--quiet {
 ons-page.transparent .page__content {
   top: 0;
 }
+
 .navigation-bar--transparent ~ .page__content {
   top: 0;
 }
@@ -565,7 +566,6 @@ img.bg {
   background: rgba(0, 0, 0, 0.15);
   position: absolute;
 }
-
 .noblur:after
 {
   content: '';

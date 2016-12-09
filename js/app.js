@@ -40,7 +40,7 @@
               });
           }
       };
-  });  
+  });
 
   app.controller('networkController', function($scope){
 
@@ -340,7 +340,7 @@
         //console.log(ref);
         var syncArray=$firebaseArray(ref);
         $scope.book = syncArray;        
-        //console.log(book);
+        // console.log(book);
     }
 
     $scope.upload = function(tipeantrian,fullname,email,phone,message)
@@ -411,7 +411,7 @@
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';
 
-    $scope.login = function(email,password)
+    $scope.login = function(email,password,navigator)
     {
       console.log("logging in");
 
@@ -421,6 +421,14 @@
       .then(function(firebaseUser) 
       {
         console.log("Signed in as:", firebaseUser.uid);
+        if (!$scope.dialogs[navigator]) {
+          ons.createDialog(navigator).then(function(dialog) {
+          $scope.dialogs[navigator] = dialog;
+          dialog.show();
+          });
+        }else {
+          $scope.dialogs[navigator].show();
+        }
       }).catch(function(error) 
       {
         console.error(error);
