@@ -307,9 +307,24 @@
 
   });
 
-  app.controller('insertController'), function($scope,$compile,$filter,$firebaseArray,$firebaseAuth){
-    
-  }
+
+  app.controller('homeCtrl', function($scope, CommonProp, $firebaseAuth) {
+    $scope.username = CommonProp.getUser();
+    console.log($scope.username);
+  });
+
+  app.service('CommonProp', function() {
+    var user = '';
+ 
+    return {
+        getUser: function() {
+            return user;
+        },
+        setUser: function(value) {
+            user = value;
+        }
+    };
+  });
 
   app.controller('bookingController', function($scope, $compile, $filter,$firebaseArray,$firebaseAuth){
 
@@ -381,7 +396,7 @@
 
   });
 
-  app.controller('loginController', function($scope, $compile, $filter, $firebaseAuth){
+  app.controller('loginController', function($scope, $compile, $location,$filter, $firebaseAuth){
 
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';

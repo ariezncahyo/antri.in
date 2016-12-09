@@ -511,33 +511,10 @@ img.bg {
   position: fixed;
   z-index: -2;
 }
-img.bg2{
-    width: 110%;
-  height: 110%;
-  top: -10px;
-  bottom: -10px;
-  left: -10px;
-  right: -10px;
-  position: fixed;
-  z-index: 1;
-}
 .blur {
   height: 100%;
   width: 100%!important;
   z-index: -1;
-  position: absolute;
-  top: 0;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: url(#blur);
-  overflow: hidden;
-}
-.blur2 {
-  height: 100%;
-  width: 100%!important;
-  z-index: 1;
   position: absolute;
   top: 0;
   filter: blur(5px);
@@ -1110,6 +1087,7 @@ img.bg2{
   line-height: 1.4;
   /*background-color: #33393c;*/
   text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+  z-index: 1;
 }
 .app-profile .white-overlay {
   background: rgba(255, 255, 255, 0.4);
@@ -1207,6 +1185,106 @@ img.bg2{
   font-size: 14px;
   opacity: 0.4;
 }
+/*profilesmall*/
+.app-profile-small .profile-card {
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 30px 0;
+  height: 200px;
+  position: relative;
+  line-height: 1.4;
+  /*background-color: #33393c;*/
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+  z-index: 1;
+}
+.app-profile-small .black-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+.app-profile-small .blur img {
+  position: absolute;
+  left: 5px;
+}
+
+.app-profile-small .noblur img {
+  position: absolute;
+  left: 0px;
+}
+
+.app-profile-small .blur:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  position: absolute;
+}
+
+.app-profile-small .noblur:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.app-profile-small .profile-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  background-color: black;
+  border: 1px solid white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
+  position: relative;
+  z-index: 5;
+}
+.app-profile-small .profile-name {
+  margin: 20px 0 0 0;
+  font-weight: 600;
+  font-size: 17px;
+  position: relative;
+  z-index: 5;
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+}
+.app-profile-small .profile-id {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  opacity: 0.6;
+  position: relative;
+  z-index: 5;
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+}
+.app-profile-small .profile-desc {
+  font-size: 15px;
+  opacity: 0.6;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+}
+.app-profile-small .info-col {
+  height: 60px;
+  line-height: 1;
+  padding: 12px 0 12px 4px;
+}
+.app-profile-small .info-num {
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+.app-profile-small .info-unit {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.4;
+}
 /* Friends Page */
 ons-page.friends .search-input {
   width: 96%;
@@ -1268,6 +1346,10 @@ ons-page.friends .person-image img {
 }
 .app-page-menu ons-col ons-button:active {
   opacity: 0.7;
+}
+.profile-card{
+  background-color: black;
+  z-index: 0;
 }
 .app-page-menu ons-col ons-button p {
   width: 100%;

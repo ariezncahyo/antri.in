@@ -1,13 +1,13 @@
     
 <ons-list class="menu-list">
 <div class= "app-profile">
-  <div class="profile-card">
+  <div class="profile-card" ng-controller="homeCtrl">
       <img src="images/profiles/profile-image-01.png" class="profile-image">
-      <div class="profile-name">Dave Graham</div>
+      <div class="profile-name">{{username}}</div>
       <div class="profile-id">@davegraham</div>
       <div class="profile-desc">Freelance designer, software engineer and cyclist</div>
       <div class="black-overlay"></div>
-<div class="blur2">
+<div class="blur">
         <img src="images/bg1.png" class="bg2">
       </div>
       
@@ -28,7 +28,13 @@
   <ons-list-item class="menu-item" ng-click="menu.setMainPage('tambahantrian.html', {closeMenu: true})">
     <ons-icon icon="fa-th-large" fixed-width="true"></ons-icon>
     Tambah Antrian
+  </ons-list-item> 
+  <!-- ============ -->
+  <ons-list-item class="menu-item" ng-click="menu.setMainPage('listuser.html', {closeMenu: true})">
+    <ons-icon icon="fa-th-large" fixed-width="true"></ons-icon>
+    List User
   </ons-list-item>  
+  <!-- ============= -->
   <ons-list-item class="menu-item" ng-click="menu.setMainPage('search.html', {closeMenu: true})">
     <ons-icon icon="fa-th-large" fixed-width="true"></ons-icon>
     Search
