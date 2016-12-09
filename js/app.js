@@ -343,7 +343,7 @@
         //console.log(book);
     }
 
-    $scope.upload = function(fullname,email)
+    $scope.upload = function(tipeantrian,fullname,email,phone,message)
     {
       console.log("coba upload");
       if(auth)
@@ -351,7 +351,7 @@
         console.log("udah login");
         var ref=firebase.database().ref();
         var syncArray=$firebaseArray(ref);
-        syncArray.$add({fullname: fullname, email:email}).then(function(syncArray)
+        syncArray.$add({tipeantrian:tipeantrian, fullname: fullname, email:email, phone:phone, message:message}).then(function(syncArray)
         {
           console.log("data telah ditambahkan");
         }
