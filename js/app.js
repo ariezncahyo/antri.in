@@ -331,11 +331,21 @@
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';
 
+    var fb = $firebaseAuth();
+    var auth=fb.$getAuth();
+    if(auth)
+    {
+        console.log("coba dapetin data");
+        var ref=firebase.database().ref();
+        //console.log(ref);
+        var syncArray=$firebaseArray(ref);
+        $scope.book = syncArray;        
+        //console.log(book);
+    }
+
     $scope.upload = function(fullname,email)
     {
       console.log("coba upload");
-      var fb = $firebaseAuth();
-      var auth=fb.$getAuth();
       if(auth)
       {
         console.log("udah login");
