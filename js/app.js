@@ -342,6 +342,10 @@
         $scope.book = syncArray;        
         // console.log(book);
     }
+    else
+    {
+      console.log("belum login");
+    }
 
     $scope.upload = function(tipeantrian,fullname,email,phone,message)
     {
@@ -446,10 +450,11 @@
 
   });
 
-  app.controller('signupController', function($scope, $compile, $filter, $firebaseAuth){
+  app.controller('signupController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray){
 
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';
+
 
     $scope.signup = function(email,password,navigator3,navigator4)
     {
@@ -461,6 +466,24 @@
       .then(function(firebaseUser) 
       {
         console.log("User " + firebaseUser.uid + " created successfully!");
+        var fb = $firebaseAuth();
+        var auth=fb.$getAuth();
+        if(auth)
+        {
+            console.log("coba signup email & nama");
+            var ref=firebase.database().ref("users/" + auth.uid);
+            //console.log(ref);
+            var syncArray=$firebaseArray(ref);
+            syncArray.$add({email:email, first: first, last:last}).then(function(syncArray)
+            {
+              console.log("data telah ditambahkan");
+            }
+            ).catch(function(error) 
+            {
+              console.error("Error: ", error);
+            });             
+                //console.log(book);
+        }
         navigator3.show();
       }).catch(function(error) 
       {
@@ -485,7 +508,105 @@
     }
 
   });
+
+  app.controller('profileController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray)
+  {
+    var fb = $firebaseAuth();
+    var auth=fb.$onAuthStateChanged(function(firebaseUser)
+    {
+        console.log("coba signup email & nama");
+        var ref=firebase.database().ref("users/" + firebaseUser.uid);
+        var syncArray=$firebaseArray(ref);
+        $scope.profil=syncArray;
+    }
+      );
+    /*if(auth)
+    {
+
+    }
+    else
+    {
+      console.log("belum login");
+    }*/
+
+  });
+
+  app.controller('barcodeController', function( $scope ){
+    
+    $scope.barcode = {
+      'result': '',
+      'format': '',
+      'cancelled': ''
+    }
+
+    $scope.startScanner = function(){
+      
+      cordova.plugins.barcodeScanner.scan(
+        function (result) {
+
+          $scope.$apply(function(){
+            $scope.barcode = {
+              'result': result.text,
+              'format': result.format,
+              'cancelled': result.cancelled
+            } 
+          });
+                       
+        }, 
+        function (error) {
+
+          alert("Scanning failed: " + error);
+          
+        }
+      );
+
+    };
+      
+  });
+
+  app.controller('cameraController', function( $scope ){
+    
+    $scope.lastPhoto = 'images/profile.png';
+
+    $scope.camOptions = {};
+
+    var originalPhoto = document.getElementById('photo');
+
+    // This function takes care of opening the camera and getting the URL
+    $scope.openCamera = function(){
+      ons.ready(function() {
+        $scope.camOptions = { 
+          quality : 100,
+          destinationType : navigator.camera.DestinationType.FILE_URI,
+          sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
+          allowEdit : true,
+          encodingType: navigator.camera.EncodingType.JPEG,
+          targetWidth: 640,
+          targetHeight: 640,
+          saveToPhotoAlbum: true 
+        };      
+        navigator.camera.getPicture( $scope.onSuccess, $scope.onFail, $scope.camOptions );
+      });
+    }
+
+    // This is the function that will trigger if we succeded taking the picture
+    $scope.onSuccess = function(imageURI) {
+      console.log(imageURI);
+      $scope.$apply(function(){
+        $scope.lastPhoto = imageURI;
+      });
+    }
+
+    // This is the function that will trigger if we failed to take a picture
+    $scope.onFail = function(message) {
+        console.log('Failed because: ' + message);
+    }
+
+          
+  });
   // Plugins Controller
+
+
 
   app.controller('pluginsController', function($scope, $compile){
 

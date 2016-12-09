@@ -1,13 +1,12 @@
-    
 <ons-list class="menu-list">
-<div class= "app-profile">
+<div class= "app-profile" ng-controller="profileController">
   <div class="profile-card" ng-controller="homeCtrl">
       <img src="images/profiles/profile-image-01.png" class="profile-image">
-      <div class="profile-name">{{username}}</div>
-      <div class="profile-id">@davegraham</div>
+      <div class="profile-name">{{ profil[0].first }} {{ profil[0].last }}</div>
+      <div class="profile-id">{{ profil[0].email }}</div>
       <div class="profile-desc">Freelance designer, software engineer and cyclist</div>
       <div class="black-overlay"></div>
-<div class="blur">
+      <div class="blur">
         <img src="images/bg1.png" class="bg2">
       </div>
       
@@ -33,6 +32,15 @@
     Admin Page
   </ons-list-item>
 
+  <ons-list-item class="menu-item" ng-click="menu.setMainPage('barcode.html', {closeMenu: true})">
+    <ons-icon icon="fa-home" fixed-width="true"></ons-icon>
+    Barcode Scanner
+  </ons-list-item>
+
+  <ons-list-item class="menu-item" ng-click="menu.setMainPage('camera.html', {closeMenu: true})">
+    <ons-icon icon="fa-home" fixed-width="true"></ons-icon>
+    Barcode Scanner
+  </ons-list-item>
 <!-- <ons-list-item class="menu-item" ng-click="menu.setMainPage('page.html', {closeMenu: true})">
     <ons-icon icon="fa-bookmark" fixed-width="true"></ons-icon>
     Page
