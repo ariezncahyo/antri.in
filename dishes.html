@@ -1,5 +1,6 @@
 <ons-navigator animation="slide" var="gallery">  
 <ons-page>
+
   <ons-toolbar modifier="opacity">
     <div class="left">
       <ons-toolbar-button ng-click="menu.toggle()"><ons-icon icon="ion-navicon-round" fixed-width="false"></ons-icon></ons-toolbar-button>
@@ -129,9 +130,10 @@
           </ons-col>
         </ons-row>
       </ons-list-item>
-      <div class="buttonbottom" ng-click="gallery.pushPage('tambahantrian.html');">
-        <img src="images/plus.png">
-      </div>
+      
+        <div class="buttonbottom" ng-click="gallery.pushPage('tambahantrian.html');">
+            <img src="images/plus.png">
+        </div>
   </div>
 
 </ons-page>  
