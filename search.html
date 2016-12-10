@@ -19,7 +19,7 @@
           <span class="right-border"><i></i></span>
         </div>
 
-        <div ons-controller="daftarorgController">      
+        <div ng-controller="daftarorgController">      
         <ons-list class="photo-timeline" modifier="inset" style="margin-bottom: 20px" ng-click="gallery.pushPage('booking.html');">
           <ons-list-item class="timeline-li" >
             <ons-row>
@@ -32,7 +32,7 @@
                 <div style="margin-left: 5px; margin-top: 0px; margin-bottom: 10px" >
                   <ons-row>
                     <ons-col>
-                      <div class="timeline-id">{{}}</div>
+                      <div class="timeline-id">{{organisasi}}</div>
                     </ons-col>
                   </ons-row>
                   <ons-row>

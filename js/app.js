@@ -308,24 +308,6 @@
   });
 
 
-  app.controller('homeCtrl', function($scope, CommonProp, $firebaseAuth) {
-    $scope.username = CommonProp.getUser();
-    console.log($scope.username);
-  });
-
-  app.service('CommonProp', function() {
-    var user = '';
- 
-    return {
-        getUser: function() {
-            return user;
-        },
-        setUser: function(value) {
-            user = value;
-        }
-    };
-  });
-
   app.controller('bookingController', function($scope, $compile, $filter,$firebaseArray,$firebaseAuth){
 
     $scope.bookdate = 'Pick Reservation Date';
@@ -554,17 +536,26 @@
 
   });
 //masih salah 
-  // app.controller('daftarorgController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray)
-  // {
-  //   // var fb = $firebaseAuth();
-  //   // var auth=fb.$onAuthStateChanged(function(firebaseUser)
-  //   // {
-  //   //     console.log("mendapatkan data org");
-  //   //     var ref=firebase.database().ref("orgs/");
-  //   //     var syncArray=$firebaseArray(ref);
-  //   //     $scope.profilorg=syncArray;
-  //   // }
-  //   //   );
+  app.controller('daftarorgController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray)
+  {
+    var fb = $firebaseAuth();
+    // var auth=fb.$onAuthStateChanged(function(firebaseUser)
+    // {
+    //     console.log("mendapatkan data org");
+    //     var ref=firebase.database().ref("orgs/");
+    //     var syncArray=$firebaseArray(ref);
+    //     $scope.profilorg=syncArray;
+    // }
+    //   );
+    var ref=firebase.database().ref("orgs/");
+    ref.on("value", function(snapshot) {
+       var syncArray = snapshot.val();
+       $scope.profilorg=syncArray;
+       console.log(snapshot.val());
+    }, function (error) {
+       console.log("Error: " + error.code);
+    });
+
   // var orgsRef = database.ref('orgs').orderByKey();
   // orgsRef.on('value', function(snapshot) {
   //   snapshot.forEach(function(childSnapshot) {
@@ -572,7 +563,7 @@
   //   });
   // });
 
-  // });
+  });
 
   app.controller('barcodeController', function( $scope ){
     
