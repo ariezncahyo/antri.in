@@ -450,13 +450,44 @@
 
   });
 
+  app.controller('uporgController',function($scope,$compile,$filter,$firebaseAuth,$firebaseArray){
+
+    var fb = $firebaseAuth();
+    var auth=fb.$getAuth();
+    console.log("masuk");
+    $scope.uporg = function(organisasi,lokasi,navigator3,navigator4)
+    {
+        if(auth)
+        {
+            console.log("coba upload org");
+            var ref=firebase.database().ref("orgs/");
+            //console.log(ref);
+            var syncArray=$firebaseArray(ref);
+            syncArray.$add({organisasi:organisasi, lokasi:lokasi}).then(function(syncArray)
+            {
+              console.log("data org telah ditambahkan");
+              navigator3.show();
+            }
+            ).catch(function(error) 
+            {
+              console.error("Error: ", error);
+            });             
+        }
+        else
+        {
+          console.error("Error: ", error);
+          navigator4.show();
+        }
+    }
+  });
+
   app.controller('signupController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray){
 
     $scope.bookdate = 'Pick Reservation Date';
     $scope.booktime = 'Pick Reservation Time';
 
 
-    $scope.signup = function(email,password,navigator3,navigator4)
+    $scope.signup = function(first,last,email,password,navigator3,navigator4)
     {
       var auth = $firebaseAuth();
 
@@ -520,16 +551,28 @@
         $scope.profil=syncArray;
     }
       );
-    /*if(auth)
-    {
-
-    }
-    else
-    {
-      console.log("belum login");
-    }*/
 
   });
+//masih salah 
+  // app.controller('daftarorgController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray)
+  // {
+  //   // var fb = $firebaseAuth();
+  //   // var auth=fb.$onAuthStateChanged(function(firebaseUser)
+  //   // {
+  //   //     console.log("mendapatkan data org");
+  //   //     var ref=firebase.database().ref("orgs/");
+  //   //     var syncArray=$firebaseArray(ref);
+  //   //     $scope.profilorg=syncArray;
+  //   // }
+  //   //   );
+  // var orgsRef = database.ref('orgs').orderByKey();
+  // orgsRef.on('value', function(snapshot) {
+  //   snapshot.forEach(function(childSnapshot) {
+  //     var childData = childSnapshot.val();
+  //   });
+  // });
+
+  // });
 
   app.controller('barcodeController', function( $scope ){
     
