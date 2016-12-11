@@ -22,16 +22,21 @@
       </div>
 
       <ons-list modifier="inset" style="margin-top: 10px">
-      <ons-list-item>
-          <input type="text" class="text-input text-input--transparent" placeholder="Nama Organisasi" ng-model="organisasi">
+        <ons-list-item>
+          <input type="email" class="text-input text-input--transparent" placeholder="Email" ng-model="email">
         </ons-list-item>
         <ons-list-item>
-          <input type="text" class="text-input text-input--transparent" placeholder="Lokasi" ng-model="lokasi">
+          <input type="password" class="text-input text-input--transparent" placeholder="Password" ng-model="password">
         </ons-list-item>
-
+        <ons-list-item>
+          <input type="text" class="text-input text-input--transparent" placeholder="Nama Organisasi" ng-model="organisasi">
+        </ons-list-item>        
+        <ons-list-item>
+          <input type="text" class="text-input text-input--transparent" placeholder="Alamat" ng-model="lokasi">
+        </ons-list-item>
       </ons-list>
       <div class="request-button">
-        <ons-button modifier="large" style="margin: 0 auto;" ng-click="uporg(organisasi,lokasi,naviDialog3,naviDialog4)">
+        <ons-button modifier="large" style="margin: 0 auto;" ng-click="uporg(email,password,organisasi,lokasi,naviDialog3,naviDialog4)">
           Create Organitation
         </ons-button>
       </div>

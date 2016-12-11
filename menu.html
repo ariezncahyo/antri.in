@@ -2,8 +2,10 @@
 <div class= "app-profile" ng-controller="profileController">
   <div class="profile-card">
       <img src="images/profiles/profile-image-01.png" class="profile-image">
-      <div class="profile-name">{{ profil[0].first }} {{ profil[0].last }}</div>
-      <div class="profile-id">{{ profil[0].email }}</div>
+      <div class="profile-name" ng-if="profil[0].first != null || profil[0].last != null">{{ profil[0].first }} {{ profil[0].last }}</div>
+      <div class="profile-name" ng-if="profil[0].first == null && profil[0].last == null">Your Name</div>
+      <div class="profile-id" ng-if="profil[0].email != null">{{ profil[0].email }}</div>
+      <div class="profile-id" ng-if="profil[0].email == null">Your Email</div>
       <div class="profile-desc">Freelance designer, software engineer and cyclist</div>
       <div class="black-overlay"></div>
       <div class="blur">
