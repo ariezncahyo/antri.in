@@ -539,29 +539,9 @@
   app.controller('daftarorgController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray)
   {
     var fb = $firebaseAuth();
-    // var auth=fb.$onAuthStateChanged(function(firebaseUser)
-    // {
-    //     console.log("mendapatkan data org");
-    //     var ref=firebase.database().ref("orgs/");
-    //     var syncArray=$firebaseArray(ref);
-    //     $scope.profilorg=syncArray;
-    // }
-    //   );
     var ref=firebase.database().ref("orgs/");
-    ref.on("value", function(snapshot) {
-       var syncArray = snapshot.val();
-       $scope.profilorg=syncArray;
-       console.log(snapshot.val());
-    }, function (error) {
-       console.log("Error: " + error.code);
-    });
-
-  // var orgsRef = database.ref('orgs').orderByKey();
-  // orgsRef.on('value', function(snapshot) {
-  //   snapshot.forEach(function(childSnapshot) {
-  //     var childData = childSnapshot.val();
-  //   });
-  // });
+    var syncArray = $firebaseArray(ref);
+    $scope.profilorg=syncArray;
 
   });
 
