@@ -329,6 +329,9 @@
       console.log("belum login");
     }
 
+
+    $scope.bankpars=gallery.getCurrentPage().options.param1;
+
     $scope.upload = function(tipeantrian,fullname,email,phone,message)
     {
       console.log("coba upload");
@@ -337,7 +340,8 @@
         console.log("udah login");
         var ref=firebase.database().ref();
         var syncArray=$firebaseArray(ref);
-        syncArray.$add({tipeantrian:tipeantrian, fullname: fullname, email:email, phone:phone, message:message}).then(function(syncArray)
+        var bankpars = gallery.getCurrentPage().options.param1;
+        syncArray.$add({bankpars,tipeantrian:tipeantrian, fullname: fullname, email:email, phone:phone, message:message}).then(function(syncArray)
         {
           console.log("data telah ditambahkan");
         }
@@ -535,13 +539,36 @@
       );
 
   });
-//masih salah 
+
   app.controller('daftarorgController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray)
   {
     var fb = $firebaseAuth();
     var ref=firebase.database().ref("orgs/");
     var syncArray = $firebaseArray(ref);
     $scope.profilorg=syncArray;
+
+    $scope.upload = function(tipeantrian,fullname,email,phone,message)
+    {
+      console.log("coba upload");
+      if(auth)
+      {
+        console.log("udah login");
+        var ref=firebase.database().ref();
+        var syncArray=$firebaseArray(ref);
+        syncArray.$add({tipeantrian:tipeantrian, fullname: fullname, email:email, phone:phone, message:message}).then(function(syncArray)
+        {
+          console.log("data telah ditambahkan");
+        }
+        ).catch(function(error) 
+        {
+          console.error("Error: ", error);
+        });
+      }
+      else
+      {
+        console.log("belum login");
+      }
+    }
 
   });
 
