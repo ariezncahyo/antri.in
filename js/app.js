@@ -314,7 +314,8 @@
     $scope.booktime = 'Pick Reservation Time';
 
     var fb = $firebaseAuth();
-    var auth=fb.$getAuth();
+    var auth = fb.$getAuth();
+
     if(auth)
     {
         console.log("coba dapetin data");
@@ -332,17 +333,18 @@
     $scope.bankpars=gallery.getCurrentPage().options.param1;
     $scope.lokasipars=gallery.getCurrentPage().options.param2;
 
-    $scope.upload = function(tipeantrian,fullname,email,phone,message)
+    $scope.upload = function(message)
     {
-      console.log("coba upload");
       if(auth)
       {
-        console.log("udah login");
-        var ref=firebase.database().ref("myqueue/" + auth.uid);
+        var idorg=gallery.getCurrentPage().options.param3;
+        var ref=firebase.database().ref("myqueue/" + auth.uid + "/" + idorg);
         var syncArray=$firebaseArray(ref);
+
         var bankpars = gallery.getCurrentPage().options.param1;
         var lokasipars = gallery.getCurrentPage().options.param2;
-        syncArray.$add({bankpars,lokasipars,tipeantrian:tipeantrian, fullname: fullname, email:email, phone:phone, message:message}).then(function(syncArray)
+        
+        syncArray.$add({bankpars,lokasipars,message:message}).then(function(syncArray)
         {
           console.log("data telah ditambahkan");
         }
@@ -474,8 +476,13 @@
     var fb = $firebaseAuth();
     var auth=fb.$onAuthStateChanged(function(firebaseUser){
         console.log("coba get data antrian bank ku");
-        var ref=firebase.database().ref("myqueue/" + firebaseUser.uid);
+        var ref=firebase.database().ref("myqueue/");
+        var idbank = ref.child(firebaseUser.uid);
         var syncArray=$firebaseArray(ref);
+        // var idbank = syncArray.$id;
+        console.log(idbank);
+        // var ref=firebase.database().ref("myqueue/" + firebaseUser.uid + "/" + idbank);
+        // var syncArray=$firebaseArray(ref);
         $scope.dishes=syncArray;
     }
       );

@@ -11,7 +11,7 @@
     <div class="app-page">
       <div class="app-page-content">
 
-        <input type="text" class="text-input text-input--transparent" placeholder="Tipe Antrian" ng-model="tipeantrian">
+        <input type="text" class="text-input text-input--transparent" placeholder="Tipe Antrian" ng-model="Search">
 
         <div class="title-line">
           <span class="left-border"><i></i></span>
@@ -22,7 +22,7 @@
         <div ng-controller="daftarorgController">
           <div ng-repeat="profil in profilorg">
 
-          <ons-list class="photo-timeline" modifier="inset" style="margin-bottom: 20px" ng-click="gallery.pushPage('booking.html', {param1: '{{profil.organisasi}}', param2:'{{profil.lokasi}}'  });">
+          <ons-list class="photo-timeline" modifier="inset" style="margin-bottom: 20px" ng-click="gallery.pushPage('booking.html', {param1: '{{profil.organisasi}}', param2:'{{profil.lokasi}}', param3:'{{profil.$id}}'  });">
             <ons-list-item class="timeline-li" >
               <ons-row>
                 <ons-col width="50px" >
