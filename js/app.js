@@ -399,6 +399,69 @@
 
   });
 
+    app.controller('bookingController2', function($scope, $compile, $filter,$firebaseArray,$firebaseAuth){
+
+    var fb = $firebaseAuth();
+    var auth = fb.$getAuth();
+
+    if(auth)
+    {
+        console.log("coba dapetin data");
+        var ref=firebase.database().ref();
+        var syncArray=$firebaseArray(ref);
+        $scope.book = syncArray;        
+    }
+    else
+    {
+      console.log("belum login");
+    }
+
+    $scope.bankpars=gallery.getCurrentPage().options.param1;
+    $scope.lokasipars=gallery.getCurrentPage().options.param2;
+
+    $scope.upload = function(message)
+    {
+      if(auth)
+      {
+        var idorg=gallery.getCurrentPage().options.param3;
+        var ref=firebase.database().ref("myqueue2/" + auth.uid );
+        var syncArray=$firebaseArray(ref);
+
+        var bankpars = gallery.getCurrentPage().options.param1;
+        var lokasipars = gallery.getCurrentPage().options.param2;
+        
+        syncArray.$add({bankpars,lokasipars,message:message}).then(function(syncArray)
+        {
+          console.log("data telah ditambahkan");
+
+          var id = syncArray.key;
+          $scope.records.$save(recordUid); 
+
+        }).catch(function(error) 
+        {
+          console.error("Error: ", error);
+        });
+
+        var ref2=firebase.database().ref("bankqueue/" );
+        var syncArray2=$firebaseArray(ref2);
+
+        syncArray2.$add({iduser: auth.uid,message:message}).then(function(syncArray2)
+        {
+          console.log("data telah ditambahkan");
+        }).catch(function(error) 
+        {
+          console.error("Error: ", error);
+        });
+
+      }
+      else
+      {
+        console.log("belum login");
+      }
+    }
+    
+  });
+
   app.controller('loginController', function($scope, $compile, $location,$filter, $firebaseAuth){
 
     $scope.bookdate = 'Pick Reservation Date';
@@ -476,16 +539,30 @@
     var fb = $firebaseAuth();
     var auth=fb.$onAuthStateChanged(function(firebaseUser){
         console.log("coba get data antrian bank ku");
-        var ref=firebase.database().ref("myqueue/");
-        var idbank = ref.child(firebaseUser.uid);
-        var syncArray=$firebaseArray(ref);
+        var ref=firebase.database().ref("myqueue/" + firebaseUser.uid);
+        // var idbank = ref.child(firebaseUser.uid);
+        var syncArray=ref.push();
         // var idbank = syncArray.$id;
-        console.log(idbank);
+        console.log(syncArray);
         // var ref=firebase.database().ref("myqueue/" + firebaseUser.uid + "/" + idbank);
         // var syncArray=$firebaseArray(ref);
         $scope.dishes=syncArray;
     }
       );
+
+  });
+
+
+  app.controller('dishesController2', function($scope,$compile,$filter,$firebaseAuth,$firebaseArray)
+  {
+
+    var fb = $firebaseAuth();
+    var auth=fb.$onAuthStateChanged(function(firebaseUser){
+        console.log("coba get data antrian bank ku");
+        var ref=firebase.database().ref("myqueue2/" + firebaseUser.uid);
+        var syncArray=$firebaseArray(ref);
+        $scope.dishes=syncArray;
+    });
 
   });
 
