@@ -22,7 +22,7 @@
         <div ng-controller="daftarorgController">
           <div ng-repeat="profil in profilorg">
 
-          <ons-list class="photo-timeline" modifier="inset" style="margin-bottom: 20px" ng-click="gallery.pushPage('booking.html', {param1: '{{profil.organisasi}}'  });">
+          <ons-list class="photo-timeline" modifier="inset" style="margin-bottom: 20px" ng-click="gallery.pushPage('booking.html', {param1: '{{profil.organisasi}}', param2:'{{profil.lokasi}}'  });">
             <ons-list-item class="timeline-li" >
               <ons-row>
                 <ons-col width="50px" >

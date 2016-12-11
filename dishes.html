@@ -8,133 +8,35 @@
     <div class="center">Mains</div>
   </ons-toolbar>
 
-  <div class="app-page">
-
+  <div class="app-page" >
     <ons-list modifier="categories">
-      <ons-list-item modifier="chevron" class="list-item-container" ng-click="gallery.pushPage('dish.html');">
-        <ons-row>
-          <ons-col width="125px">
-            <img src="images/profiles/bri2.jpg" class="thumbnail">
-          </ons-col>
-          <ons-col>
-            <div class="item-content">
-              <div class="name">
-                BCA Kertajaya
-              </div>
-              <div class="antrian">
-                A-78
-              </div>
-              <div class="activity">
-                Transfer
-              </div>
-              <div class="time">
-                Time remaining : 2 hours 14 minutes
-              </div>
-            </div>
-          </ons-col>
-        </ons-row>
-      </ons-list-item>
 
-      <ons-list-item modifier="chevron" class="list-item-container" ng-click="gallery.pushPage('dish.html');">
-        <ons-row>
-          <ons-col width="125px">
-            <img src="images/profiles/mandiri.png" class="thumbnail">
-          </ons-col>
-          <ons-col>
-            <div class="item-content">
-              <div class="name">
-                Kantor Pos Surabaya Sukolilo
-              </div>
-              <div class="antrian">
-                56
-              </div>
-              <div class="activity">
-                Kirim Barang
-              </div>
-              <div class="time">
-                Time remaining : 36 minutes
-              </div>
-            </div>
-          </ons-col>
-        </ons-row>
-      </ons-list-item>
-
-      <ons-list-item modifier="chevron" class="list-item-container" ng-click="gallery.pushPage('dish.html');">
-        <ons-row>
-          <ons-col width="125px">
-            <img src="images/profiles/bri2.jpg" class="thumbnail">
-          </ons-col>
-          <ons-col>
-            <div class="item-content">
-              <div class="name">
-                Kantor Pos Surabaya Sukolilo
-              </div>
-              <div class="antrian">
-                56
-              </div>
-              <div class="activity">
-                Kirim Barang
-              </div>
-              <div class="time">
-                Time remaining : 36 minutes
-              </div>
-            </div>
-          </ons-col>
-        </ons-row>
-      </ons-list-item>
-
-    <ons-list-item modifier="chevron" class="list-item-container" ng-click="gallery.pushPage('dish.html');">
-        <ons-row>
-          <ons-col width="125px">
-            <img src="images/profiles/mandiri.png" class="thumbnail">
-          </ons-col>
-          <ons-col>
-            <div class="item-content">
-              <div class="name">
-                Kantor Pos Surabaya Sukolilo
-              </div>
-              <div class="antrian">
-                56
-              </div>
-              <div class="activity">
-                Kirim Barang
-              </div>
-              <div class="time">
-                Time remaining : 36 minutes
-              </div>
-            </div>
-          </ons-col>
-        </ons-row>
-      </ons-list-item>
-
-      <ons-list-item modifier="chevron" class="list-item-container" ng-click="gallery.pushPage('dish.html');">
-        <ons-row>
-          <ons-col width="125px">
-            <img src="images/profiles/bri2.jpg" class="thumbnail">
-          </ons-col>
-          <ons-col>
-            <div class="item-content">
-              <div class="name">
-                Kantor Pos Surabaya Sukolilo
-              </div>
-              <div class="antrian">
-                56
-              </div>
-              <div class="activity">
-                Kirim Barang
-              </div>
-              <div class="time">
-                Time remaining : 36 minutes
-              </div>
-            </div>
-          </ons-col>
-        </ons-row>
-      </ons-list-item>
+      <div ng-controller="dishesController">
+        <div ng-repeat="dish in dishes">
+          <ons-list-item modifier="chevron" class="list-item-container" ng-click="gallery.pushPage('dish.html');">
+            <ons-row>
+              <ons-col width="125px">
+                <img src="images/profiles/bri2.jpg" class="thumbnail">
+              </ons-col>
+              <ons-col>
+                <div class="item-content">
+                  <div class="name">
+                    {{dish.bankpars}}
+                  </div>
+                  <div class="time">
+                    {{dish.lokasipars}}
+                  </div>
+                </div>
+              </ons-col>
+            </ons-row>
+          </ons-list-item>
+        </div>
+      </div>
       
         <div class="buttonbottom" ng-click="gallery.pushPage('tambahantrian.html');">
             <img src="images/plus.png">
         </div>
-      </ons-list>
+    </ons-list>
   </div>
 
 </ons-page>  

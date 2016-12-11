@@ -329,8 +329,8 @@
       console.log("belum login");
     }
 
-
     $scope.bankpars=gallery.getCurrentPage().options.param1;
+    $scope.lokasipars=gallery.getCurrentPage().options.param2;
 
     $scope.upload = function(tipeantrian,fullname,email,phone,message)
     {
@@ -338,10 +338,11 @@
       if(auth)
       {
         console.log("udah login");
-        var ref=firebase.database().ref();
+        var ref=firebase.database().ref("myqueue/" + auth.uid);
         var syncArray=$firebaseArray(ref);
         var bankpars = gallery.getCurrentPage().options.param1;
-        syncArray.$add({bankpars,tipeantrian:tipeantrian, fullname: fullname, email:email, phone:phone, message:message}).then(function(syncArray)
+        var lokasipars = gallery.getCurrentPage().options.param2;
+        syncArray.$add({bankpars,lokasipars,tipeantrian:tipeantrian, fullname: fullname, email:email, phone:phone, message:message}).then(function(syncArray)
         {
           console.log("data telah ditambahkan");
         }
@@ -465,6 +466,20 @@
           navigator4.show();
         }
     }
+  });
+
+  app.controller('dishesController', function($scope,$compile,$filter,$firebaseAuth,$firebaseArray)
+  {
+
+    var fb = $firebaseAuth();
+    var auth=fb.$onAuthStateChanged(function(firebaseUser){
+        console.log("coba get data antrian bank ku");
+        var ref=firebase.database().ref("myqueue/" + firebaseUser.uid);
+        var syncArray=$firebaseArray(ref);
+        $scope.dishes=syncArray;
+    }
+      );
+
   });
 
   app.controller('signupController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray){
