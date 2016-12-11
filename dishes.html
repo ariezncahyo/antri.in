@@ -9,11 +9,11 @@
   </ons-toolbar>
 
   <div class="app-page" >
-    <ons-list modifier="categories" ng-controller="testController">
+    <ons-list modifier="categories" >
 
       <div ng-controller="dishesController2">
         <div ng-repeat="dish in dishes">
-          <ons-list-item modifier="chevron" class="list-item-container" ng-click="gallery.pushPage('dish.html');">
+          <ons-list-item modifier="chevron" class="list-item-container" ng-click="gallery.pushPage('dish.html', {param1: '{{dish.bankpars}}', param2:'{{dish.lokasipars}}' });">
             <ons-row>
               <ons-col width="125px">
                 <img src="images/profiles/bri2.jpg" class="thumbnail">
@@ -25,9 +25,6 @@
                   </div>
                   <div class="time">
                     {{dish.lokasipars}}
-                  </div>
-                  <div class="time">
-                    {{dish.idorg}}
                   </div>
                 </div>
               </ons-col>

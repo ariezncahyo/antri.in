@@ -399,7 +399,10 @@
 
   });
 
-    app.controller('bookingController2', function($scope, $compile, $filter,$firebaseArray,$firebaseAuth){
+  app.controller('bookingController2', function($scope, $compile, $filter,$firebaseArray,$firebaseAuth){
+
+    $scope.bookdate = 'Pick Reservation Date';
+    $scope.booktime = 'Pick Reservation Time';
 
     var fb = $firebaseAuth();
     var auth = fb.$getAuth();
@@ -408,8 +411,10 @@
     {
         console.log("coba dapetin data");
         var ref=firebase.database().ref();
+        //console.log(ref);
         var syncArray=$firebaseArray(ref);
         $scope.book = syncArray;        
+        // console.log(book);
     }
     else
     {
@@ -433,33 +438,17 @@
         syncArray.$add({bankpars,lokasipars,message:message}).then(function(syncArray)
         {
           console.log("data telah ditambahkan");
-
-          var id = syncArray.key;
-          $scope.records.$save(recordUid); 
-
-        }).catch(function(error) 
+        }
+        ).catch(function(error) 
         {
           console.error("Error: ", error);
         });
-
-        var ref2=firebase.database().ref("bankqueue/" );
-        var syncArray2=$firebaseArray(ref2);
-
-        syncArray2.$add({iduser: auth.uid,message:message}).then(function(syncArray2)
-        {
-          console.log("data telah ditambahkan");
-        }).catch(function(error) 
-        {
-          console.error("Error: ", error);
-        });
-
       }
       else
       {
         console.log("belum login");
       }
     }
-    
   });
 
   app.controller('loginController', function($scope, $compile, $location,$filter, $firebaseAuth){
@@ -541,11 +530,11 @@
         console.log("coba get data antrian bank ku");
         var ref=firebase.database().ref("myqueue/" + firebaseUser.uid);
         // var idbank = ref.child(firebaseUser.uid);
-        var syncArray=ref.push();
+        // var syncArray=ref.push();
         // var idbank = syncArray.$id;
-        console.log(syncArray);
+        // console.log(syncArray);
         // var ref=firebase.database().ref("myqueue/" + firebaseUser.uid + "/" + idbank);
-        // var syncArray=$firebaseArray(ref);
+         var syncArray=$firebaseArray(ref);
         $scope.dishes=syncArray;
     }
       );
@@ -564,6 +553,32 @@
         $scope.dishes=syncArray;
     });
 
+  });
+
+  app.controller('dishController', function($scope, $compile, $filter,$firebaseArray,$firebaseAuth){
+
+    $scope.bookdate = 'Pick Reservation Date';
+    $scope.booktime = 'Pick Reservation Time';
+
+    var fb = $firebaseAuth();
+    var auth = fb.$getAuth();
+
+    if(auth)
+    {
+        console.log("coba dapetin data");
+        var ref=firebase.database().ref();
+        var syncArray=$firebaseArray(ref);
+        $scope.book = syncArray;        
+    }
+    else
+    {
+      console.log("belum login");
+    }
+
+    $scope.bankpars=gallery.getCurrentPage().options.param1;
+    $scope.lokasipars=gallery.getCurrentPage().options.param2;
+
+   
   });
 
   app.controller('signupController', function($scope, $compile, $filter, $firebaseAuth,$firebaseArray){

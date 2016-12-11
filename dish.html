@@ -3,40 +3,35 @@
     <div class="left">
       <ons-back-button>Back</ons-back-button>
     </div>
-    <div class="center">La Curisino</div>
   </ons-toolbar>
 
   <div class="app-page">
-    <div class="app-page-photo">   
+    <div class="app-page-photo">
       <div class="app-hero">
         <ul rn-carousel class="image">
           <li><div ng-style="{'background-image': 'url(images/profiles/bri2.jpg)'}"  class="bgimage"></div></li>
         </ul>      
       </div>
+      <div ng-controller="dishController">
+        <ons-list>
+          <ons-list-item>
+            <ons-row>
+              <ons-col>
+                <strong>{{bankpars}}</strong>
+              </ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item>
+            <ons-row>
+              <ons-col class="item-desc">
+                <p>{{lokasipars}}</p>
+              </ons-col>
+            </ons-row>
+          </ons-list-item>
+        </ons-list>
+      </div>
 
-      <ons-list>
-        <ons-list-item>
-          <ons-row>
-            <ons-col>
-              <strong>BCA Kertajaya</strong>              
-            </ons-col>
-<!--             <ons-col width="110px" class="text-right">
-              <div class="antrian">
-                  A-78
-              </div>
-            </ons-col> -->
-          </ons-row>
-        </ons-list-item>
-        <ons-list-item>
-          <ons-row>
-            <ons-col class="item-desc">
-              <p>Transaksi</p>
-            </ons-col>
-          </ons-row>
-        </ons-list-item>
-      </ons-list>
-
-      <div class="app-page-content">
+<!--       <div class="app-page-content">
 
         <div class="title-line">
           <span class="left-border"><i></i></span>
@@ -47,7 +42,7 @@
         <div class="antrianbig">
           A-78
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>
